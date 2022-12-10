@@ -1,6 +1,5 @@
 <style> @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'); </style>
 
-
 /* Global */
 
 :root {
@@ -35,4 +34,33 @@
 /*  Universal tags */
 * {
     box-sizing:kborder-box;
+}
+
+/* Typography */
+h1{
+    font-size: var(--font-large);
+    font-weight: var(--weight-bold);
+    color: var(--color-black);
+    margin: 16px 0px;
+}
+
+h2{
+    font-size: var(--font-regular);
+    font-weight: var(--weight-semi-bold);
+    color: var(--color-black);
+    margin: 8px 0;
+}
+
+h3{
+    font-size: var(--font-regular);
+    font-weight: var(--font-regular);
+    color: var(--color-black);
+    margin: 8px 0;
+}
+
+p{
+    font-size: var(--font-regular);
+    font-weight: var(--weight-semi-bold);
+    color: var(--color-black);
+    margin: 4px 0;
 }
