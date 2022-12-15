@@ -57,18 +57,27 @@ homeContactBttn.addEventListener('click', (e) => scrollIntoView('#contact'));
 //   home.style.opacity = opacity;
 // });
 
-// fading scroll & upButton
+// fading scroll
 const home = document.querySelector('.home__container');
 const homeHeight = home.getBoundingClientRect().height;
-
-const upButton = document.querySelector('.upButton');
 
 document.addEventListener('scroll', (e) => {
   const scrollY = window.scrollY;
   const opacity = (homeHeight - scrollY) / homeHeight;
   home.style.opacity = opacity;
-
-  upButton.style.opacity = 1 - opacity;
 });
 
-upButton.addEventListener('click', (e) => scrollIntoView('#home'));
+//show 'arrow up'' button when scrolling down
+const arrowUp = document.querySelector('.arrow-up');
+document.addEventListener('scroll', () => {
+  if (window.scrollY > homeHeight / 2) {
+    arrowUp.classList.add('visible');
+  } else {
+    arrowUp.classList.remove('visible');
+  }
+});
+
+//Handle click on the 'arrow up' button
+arrowUp.addEventListener('click', () => {
+  scrollIntoView('#home');
+});
