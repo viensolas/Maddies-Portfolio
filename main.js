@@ -47,12 +47,28 @@ navbarMenu.addEventListener('click', (event) => {
 const homeContactBttn = document.querySelector('.home__contact');
 homeContactBttn.addEventListener('click', (e) => scrollIntoView('#contact'));
 
-// fading scroll
+// // fading scroll
+// const home = document.querySelector('.home__container');
+// const homeHeight = home.getBoundingClientRect().height;
+
+// document.addEventListener('scroll', (e) => {
+//   const scrollY = window.scrollY;
+//   const opacity = (homeHeight - scrollY) / homeHeight;
+//   home.style.opacity = opacity;
+// });
+
+// fading scroll & upButton
 const home = document.querySelector('.home__container');
 const homeHeight = home.getBoundingClientRect().height;
+
+const upButton = document.querySelector('.upButton');
 
 document.addEventListener('scroll', (e) => {
   const scrollY = window.scrollY;
   const opacity = (homeHeight - scrollY) / homeHeight;
   home.style.opacity = opacity;
+
+  upButton.style.opacity = 1 - opacity;
 });
+
+upButton.addEventListener('click', (e) => scrollIntoView('#home'));
