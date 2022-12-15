@@ -27,19 +27,32 @@ document.addEventListener('scroll', () => {
 //   $('#contact').scrollIntoView({behavior:'smooth'});
 // })
 
-function scrollIntoView(selector){
+function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
-  scrollTo.scrollIntoView({behavior:'smooth'})
+  scrollTo.scrollIntoView({ behavior: 'smooth' });
 }
 
+//scroll to section with menu buttons
 const navbarMenu = document.querySelector('.navbar__menu');
-navbarMenu.addEventListener('click', (event)=>{
+navbarMenu.addEventListener('click', (event) => {
   const target = event.target;
   const link = target.dataset.link;
-  if (link == null){return};
+  if (link == null) {
+    return;
+  }
   scrollIntoView(link);
 });
 
+// scroll to contact with home button
+const homeContactBttn = document.querySelector('.home__contact');
+homeContactBttn.addEventListener('click', (e) => scrollIntoView('#contact'));
 
-const homeContactBttn = document.querySelector('.home__contact')
-homeContactBttn.addEventListener('click', (e)=>scrollIntoView("#contact"))
+// fading scroll
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+
+document.addEventListener('scroll', (e) => {
+  const scrollY = window.scrollY;
+  const opacity = (homeHeight - scrollY) / homeHeight;
+  home.style.opacity = opacity;
+});
