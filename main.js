@@ -35,6 +35,7 @@ const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
 navbarToggleBtn.addEventListener('click', () => {
   navbarMenu.classList.toggle('open');
   console.log(navbarMenu.className);
+  // navbarMenu.style.display = 'block';
 });
 
 // scroll to contact with home button
