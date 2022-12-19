@@ -144,6 +144,10 @@ p{
     /* cursor:pointer; */
 }
 
+.navbar__menu__items.active{
+    border-color:white;
+}
+
 .navbar__toggle-btn{
     position:absolute;
     top:24px;
