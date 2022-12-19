@@ -13,11 +13,6 @@ document.addEventListener('scroll', () => {
 
 //Scrolling to clicked html element
 
-function scrollIntoView(selector) {
-  const scrollTo = document.querySelector(selector);
-  scrollTo.scrollIntoView({ behavior: 'smooth' });
-}
-
 //scroll to section with menu buttons
 const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', (event) => {
@@ -28,6 +23,7 @@ navbarMenu.addEventListener('click', (event) => {
   }
   navbarMenu.classList.remove('open');
   scrollIntoView(link);
+  selectNavItem(target);
 });
 
 //responsive menu button
@@ -129,10 +125,17 @@ const navItems = sectionIds.map((id) =>
 
 let selectedNavIndex = 0;
 let selectedNavItem = navItems[0];
+
 function selectNavItem(selected) {
   selectedNavItem.classList.remove('active');
   selectedNavItem = selected;
   selectedNavItem.classList.add('active');
+}
+
+function scrollIntoView(selector) {
+  const scrollTo = document.querySelector(selector);
+  scrollTo.scrollIntoView({ behavior: 'smooth' });
+  selectNavItem(navItems[sectionIds.indexOf(selector)]);
 }
 
 const observerOptions = {
@@ -159,11 +162,11 @@ const observerCallback = (entries, observer) => {
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach((section) => observer.observe(section));
 
-window.addEventListener('scroll', () => {
+window.addEventListener('wheel', () => {
   if (window.scrollY === 0) {
     selectedNavIndex = 0;
   } else if (
-    window.scrollY + window.innerHeight + 1 >
+    Math.round(window.scrollY + window.innerHeight) + 1 >=
     document.body.clientHeight
   ) {
     selectedNavIndex = navItems.length - 1;
